@@ -66,9 +66,9 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # Load datasets / dataloaders
-    train_dataset = ProteinSSDataset('train.csv')
-    valid_dataset = ProteinSSDataset('valid.csv')
-    test_dataset = ProteinSSDataset('test.csv')
+    train_dataset = ProteinSSDataset('./data/train.csv')
+    valid_dataset = ProteinSSDataset('./data/valid.csv')
+    test_dataset = ProteinSSDataset('./data/test.csv')
 
     train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, collate_fn=collate_fn)
     valid_loader = DataLoader(valid_dataset, batch_size=32, collate_fn=collate_fn)
@@ -80,7 +80,7 @@ def main():
     
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
-    EPOCHS = 20
+    EPOCHS = 10
     #since we're working with very limited ressource, we follow the following techniques: 
     #1- we run the training for 10 epochs, 
     #2- save the cnn weights 
